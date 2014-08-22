@@ -15,7 +15,7 @@
  *************************************************************************/
 import java.awt.Color;
 
-public class PictureDump {
+public class PictureDump1 {
 
     public static void main(String[] args) {
         int width = Integer.parseInt(args[0]);

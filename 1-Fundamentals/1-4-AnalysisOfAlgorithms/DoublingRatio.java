@@ -22,7 +22,7 @@ public class DoublingRatio {
         for (int i = 0; i < N; i++) {
             a[i] = StdRandom.uniform(-MAX, MAX);
         }
-        Stopwatch s = new Stopwatch();
+        Stopwatch1 s = new Stopwatch1();
         int cnt = ThreeSum.count(a);
         return s.elapsedTime();
     }

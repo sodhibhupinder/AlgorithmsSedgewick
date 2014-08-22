@@ -16,14 +16,14 @@
 
 
 
-public class Stopwatch { 
+public class Stopwatch1 { 
 
     private final long start;
 
    /**
      * Create a stopwatch object.
      */
-    public Stopwatch() {
+    public Stopwatch1() {
         start = System.currentTimeMillis();
     } 
 
