@@ -5,7 +5,6 @@
 	<classpathentry kind="src" path="4-Graphs/4-2-DirectedGraphs"/>
 	<classpathentry kind="src" path="4-Graphs/4-3-MinSpanningTrees"/>
 	<classpathentry kind="src" path="4-Graphs/4-4-ShortestPaths"/>
-	<classpathentry excluding="1-1-BasicProgModel/|1-1-BasicProgModel/|1-2-DataAbstraction/|1-3-BagsQueuesStacks/|1-4-AnalysisOfAlgorithms/|1-5-UnionFind/|1-2-DataAbstraction/|1-3-BagsQueuesStacks/|1-4-AnalysisOfAlgorithms/|1-5-UnionFind/" kind="src" path="1-Fundamentals"/>
 	<classpathentry kind="src" path="Beyond"/>
 	<classpathentry kind="src" path="StdLib"/>
 	<classpathentry kind="src" path="1-Fundamentals/1-1-BasicProgModel"/>
@@ -32,15 +31,15 @@
 	<classpathentry kind="src" path="5-Strings/5-3-SubstringSearch"/>
 	<classpathentry kind="src" path="5-Strings/5-4-RegularExpressions"/>
 	<classpathentry kind="src" path="5-Strings/5-5-DataCompression"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+	<classpathentry kind="lib" path="stdlib.jar"/>
+	<classpathentry kind="lib" path="algs4.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/j3dcore.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/j3dutils.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/vecmath.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="stdlib.jar"/>
-	<classpathentry kind="lib" path="algs4.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.6.0_45/jre/lib/ext/j3dcore.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.6.0_45/jre/lib/ext/j3dutils.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.6.0_45/jre/lib/ext/vecmath.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
