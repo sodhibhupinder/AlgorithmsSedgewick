@@ -1,7 +1,9 @@
 package com.algo.problems;
 import java.util.Scanner;
 
-public class InsertionSort2 {
+//Print Number of Shifts
+public class InsertionSort4 {
+	private static int N;
 
 	public static void insertIntoSorted(int[] ar) {
 		int size = ar.length;
@@ -15,11 +17,13 @@ public class InsertionSort2 {
 		        if(ar[j] < ar[j - 1]){
 		            ar[j] = ar[j -1];
 		            ar[j - 1] = insert;
+		            N++;
 		        }
 		    }
 
-		    printArray(ar);
+		   // printArray(ar);
 		}
+		System.out.println(N);
 	}
 
 	/* Tail starts here */
