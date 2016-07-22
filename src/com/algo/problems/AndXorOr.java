@@ -1,5 +1,7 @@
 package com.algo.problems;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -38,46 +40,48 @@ Consider the interval  the result will be maximum.
 
  *
  */
-public class AndXorOr {public static void main(String[] args) {
+public class AndXorOr {
+	public static void main(String[] args) {
 
-	int[] ar = handleInputArray();
-	Stack<Integer> s = new Stack<Integer>();
-	int i = 0, top = 0;
-	long max = 0, cur = 0;
-	while (i < ar.length) {
-		if (s.size() == 0 || ar[s.peek()] <= ar[i])
-			s.push(i++);
-		else {
-			top = s.peek();
-			s.pop();
-			cur = ar[top] ^ ar[i];
-			if (max < cur)
-				max = cur;
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		ArrayList<Integer> list = new ArrayList<>();
+		list.add(0);
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		for (int i = 0; i < n; i++)
+			System.out.println(count(list, scanner.nextInt()));
+	}
+
+	// using dynamic programming in bottom up
+	public static int count(ArrayList<Integer> list, int item) {
+		for (int i = item; i > 0; i--) {
+			List<Integer> factors = factors(i);
+			// for each factor calculate min
+			int min = 1 + list.get(i - 1);
+			for (int f : factors) {
+				min = min(min, 1 + list.get(i / f));
+			}
+			list.add(min);
+			return list.get(item);
 		}
+		return item;
 	}
-	while (s.size() != 0) {
-		top = s.peek();
-		s.pop();
-		cur = ar[top] ^ ar[s.size() == 0 ? 0 : s.peek()];
-		if (max < cur)
-			max = cur;
+
+	public static int min(int a, int b) {
+		return a<b?a:b;
 	}
-	System.out.println(max);
+
+	public static List<Integer> factors(int n) {
+		int lastfact = 1;
+		ArrayList list = new ArrayList<>();
+		for (int i = 2; i * i <= n; i++) {
+			if (n % i == 0)
+				list.add(i);
+		}
+		return list;
+	}
 }
 
 
-
-/** Handles Input
- * @return
- */
-private static int[] handleInputArray() {
-	try(Scanner sc = new Scanner(System.in)){
-	int[] ar = new int[sc.nextInt()];
-	for (int i = 0; i < ar.length; i++) {
-		ar[i] = sc.nextInt();
-	}
-	return ar;
-	}catch (Exception e) {
-		throw e;
-	}
-}}
