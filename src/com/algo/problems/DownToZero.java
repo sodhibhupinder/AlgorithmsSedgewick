@@ -46,7 +46,7 @@ import java.util.Set;
 public class DownToZero {
 
 	static Map<Integer, Integer> dpMap;
-	static Queue<Integer> priorityQueue = new PriorityQueue<>();
+
 	public static void main(String[] args) {
 		dpMap = new HashMap<>();
 		dpMap.put(0,0);
@@ -69,23 +69,30 @@ public class DownToZero {
 	}
 
 	public static int downToZero(int num) {
-		if(num<4)
+		if(num>0 && num<4)
 		{
 			return dpMap.get(num);
 		}
 		if (dpMap.containsKey(num)) {
 			return dpMap.get(num);
 		}
-		int ret = 0;
+		int ret=Integer.MAX_VALUE;
 		Set<Integer> factors = getAllFactors(num);
+		if (factors.size() == 0){
+	        ret= 1 + downToZero(num-1);
+	        dpMap.put(num, ret);
+	        return ret;
+	    }
+		Queue<Integer> priorityQueue = new PriorityQueue<>();
 		for (Integer a : factors) {
 			priorityQueue.add(1 + downToZero(a));
 		}
 		if (!priorityQueue.isEmpty()) {
-		ret=priorityQueue.peek();
-		dpMap.put(num, ret);
+		ret = priorityQueue.peek();
 		}
-		return 1+downToZero(num-1);
+		ret = Math.min(ret,1+downToZero(num-1));
+		dpMap.put(num, ret);
+		return ret;
 	}	
 	
 

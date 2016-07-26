@@ -1,5 +1,6 @@
 package com.algo.problems;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class MaxSubArray {
@@ -52,4 +53,5 @@ public class MaxSubArray {
 		}
 		return max_so_far;
 	}
+	
 }
