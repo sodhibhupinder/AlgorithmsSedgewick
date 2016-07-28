@@ -1,8 +1,6 @@
 package com.algo.problems;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,6 +67,7 @@ public class DownToZero {
 	}
 
 	public static int downToZero(int num) {
+		System.out.println("Computing subproblem for "+ num);
 		if(num>0 && num<4)
 		{
 			return dpMap.get(num);
@@ -78,20 +77,21 @@ public class DownToZero {
 		}
 		int ret=Integer.MAX_VALUE;
 		Set<Integer> factors = getAllFactors(num);
-		if (factors.size() == 0){
-	        ret= 1 + downToZero(num-1);
-	        dpMap.put(num, ret);
-	        return ret;
-	    }
 		Queue<Integer> priorityQueue = new PriorityQueue<>();
+		if (factors.size()== 0){
+	        ret= 1 + downToZero(num-1);
+	        priorityQueue.add(ret);
+	    }
 		for (Integer a : factors) {
+			System.out.println("invoking downtozero for number " +a);
 			priorityQueue.add(1 + downToZero(a));
+			System.out.println("invoking downtozero for number " +(a-1));
+			priorityQueue.add(2 + downToZero(a-1));			
 		}
 		if (!priorityQueue.isEmpty()) {
 		ret = priorityQueue.peek();
 		}
-		ret = Math.min(ret,1+downToZero(num-1));
-		dpMap.put(num, ret);
+		dpMap.put(num,ret);		
 		return ret;
 	}	
 	
@@ -105,10 +105,12 @@ public class DownToZero {
 		            if (num/divisor == divisor)
 		            {
 		            	factors.add(divisor);
+		            	//factors.add(divisor-1);
 		            }
 		            else // Otherwise print both
 		            {
 		        		factors.add(Math.max(divisor,num/divisor));
+		        		//factors.add(Math.max(divisor,num/divisor)-1);
 		            }
 			}
 			divisor--;
