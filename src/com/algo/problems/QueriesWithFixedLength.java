@@ -1,10 +1,10 @@
 package com.algo.problems;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * @author baddie
@@ -49,87 +49,57 @@ public class QueriesWithFixedLength {
 		}
 		for (int i = 0; i < Q; i++) {
 			int d = in.nextInt();
-			long result = maxInWindows(numbers, d);
+			long result = slidingWindowMax(numbers, d);
 			System.out.println(result);
 		}
 		System.out.println();
 	}
 
-	public static  Long maxSlidingWindow(long[] nums, int k) {
-		Deque<Long> results = new LinkedList<>();
-		data.clear();
-		maximums.clear();
-        k = Math.min(k, (int)nums.length);
-        int i = 0;
-        for (;i < k - 1; ++i) //push first k - 1 numbers;
-        {
-        	Enqueue(nums[i]);
-        }
-        for (; i < nums.length; ++i)
-        {
-        	Enqueue(nums[i]);            // push a new element to queue;
-            results.addLast(Max()); 	// report the current max in queue;
-            Dequeue();                    // pop first element in queue;
-        }
-        
-        return results.getFirst();
-    }
-	public static  Long  maxInWindows(long[] numbers, int windowSize)
-	{
-		Deque<Long> maxInSlidingWindows = new LinkedList<>();;
-		data.clear();
-		maximums.clear();
-	    if(numbers.length >= windowSize && windowSize > 1)
-	    {
-	    	Deque<Integer>  indices = new LinkedList<>();
+	
+	public static long maxSlidingWindow(long[] numbers, int k) {
+	    if(numbers==null||numbers.length==0)
+	        return 0;
+	 
+	    long[] result = new long[numbers.length-k+1];
+	 
+	    LinkedList<Integer> deque = new LinkedList<Integer>();
+	    for(int i=0; i<numbers.length; i++){
+	        if(!deque.isEmpty()&&deque.peekFirst()==i-k) 
+	            deque.poll();
+	 
+	        while(!deque.isEmpty()&&numbers[deque.peekLast()]<numbers[i]){
+	            deque.removeLast();
+	        }    
+	 
+	        deque.offer(i);
+	 
+	        if(i+1>=k)
+	            result[i+1-k]=numbers[deque.peek()];
+	    }
+	 
+	    return result[result.length-1];
+	}
+	public static long slidingWindowMax(final long[] numbers, final int w) {
+	    final long[] max_left = new long[numbers.length];
+	    final long[] max_right = new long[numbers.length];
 
-	        for(int i = 0; i < windowSize; ++i)
-	        {
-	            while(!indices.isEmpty() && numbers[i] >= numbers[indices.getLast()])
-	                indices.removeLast();
+	    max_left[0] = numbers[0];
+	    max_right[numbers.length - 1] = numbers[numbers.length - 1];
 
-	            indices.addLast(i);
-	        }
+	    for (int i = 1; i < numbers.length; i++) {
+	        max_left[i] = (i % w == 0) ? numbers[i] : Math.max(max_left[i - 1], numbers[i]);
 
-	        for(int i = windowSize; i < numbers.length; ++i)
-	        {
-	            maxInSlidingWindows.addLast(numbers[indices.getFirst()]);
-
-	            while(!indices.isEmpty() && numbers[i] >= numbers[indices.getLast()])
-	                indices.removeLast();
-	            if(!indices.isEmpty() && indices.getFirst() <= i - windowSize)
-	                indices.removeFirst();
-
-	            indices.addLast(i);
-	        }
-	        maxInSlidingWindows.addLast(numbers[indices.getLast()]);
+	        final int j = numbers.length - i - 1;
+	        max_right[j] = (j % w == 0) ? numbers[j] : Math.max(max_right[j + 1], numbers[j]);
 	    }
 
-	    return maxInSlidingWindows.getFirst();
-	}
-    public static void Enqueue(long nums)
-	{
-		data.addLast(nums);
-		while (!maximums.isEmpty()  && maximums.getLast() <= nums) {
-			maximums.removeLast();
-		}
-		maximums.addLast(nums);
-	}
+	    final long[] sliding_max = new long[numbers.length - w + 1];
+	    for (int i = 0, j = 0; i + w <= numbers.length; i++) {
+	        sliding_max[j++] = Math.max(max_right[i], max_left[i + w - 1]);
+	    }
 
-    public static Long Dequeue()
-	{
-    	Long result = data.getFirst();
-		data.removeFirst();
-
-		if (!maximums.isEmpty() && result == maximums.getFirst()) {
-			maximums.removeFirst();
-		}
-
-		return result;
+	    return sliding_max[0];
 	}
-    public static Long Max()
-    {
-        return maximums.getFirst();
-    }
+    
 }
 
