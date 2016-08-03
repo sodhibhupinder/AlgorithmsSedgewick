@@ -1,10 +1,8 @@
 package com.algo.problems;
 
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.Stack;
 
 /**
  * @author baddie
@@ -37,8 +35,7 @@ Explanation
 Each prefix has the least maximum value among the consecutive subsequences that have the same size.
  */
 public class QueriesWithFixedLength {
-	static Deque<Long> data = new LinkedList<>();
-    static Deque<Long> maximums=new LinkedList<>();
+	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		int N = in.nextInt();
@@ -49,7 +46,7 @@ public class QueriesWithFixedLength {
 		}
 		for (int i = 0; i < Q; i++) {
 			int d = in.nextInt();
-			long result = slidingWindowMax(numbers, d);
+			long result = maxSlidingWindow(numbers, d);
 			System.out.println(result);
 		}
 		System.out.println();
@@ -63,18 +60,18 @@ public class QueriesWithFixedLength {
 	    long[] result = new long[numbers.length-k+1];
 	 
 	    LinkedList<Integer> deque = new LinkedList<Integer>();
-	    for(int i=0; i<numbers.length; i++){
+	    for(int i=0; i<numbers.length+k-1; i++){
 	        if(!deque.isEmpty()&&deque.peekFirst()==i-k) 
 	            deque.poll();
 	 
-	        while(!deque.isEmpty()&&numbers[deque.peekLast()]<numbers[i]){
+	        while(!deque.isEmpty()&&numbers[deque.peekLast()]<numbers[i%numbers.length]){
 	            deque.removeLast();
 	        }    
 	 
 	        deque.offer(i);
 	 
 	        if(i+1>=k)
-	            result[i+1-k]=numbers[deque.peek()];
+	            result[(i+1-k)%numbers.length]=numbers[deque.peek()];
 	    }
 	 
 	    return result[result.length-1];

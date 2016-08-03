@@ -1,4 +1,4 @@
-package com.algo.problems;
+package com.algo.sort.problems;
 import java.util.Scanner;
 
 //Print Number of Shifts

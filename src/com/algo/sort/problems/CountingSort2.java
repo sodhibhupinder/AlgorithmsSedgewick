@@ -1,8 +1,8 @@
-package com.algo.problems;
+package com.algo.sort.problems;
 
 import java.util.Scanner;
 
-public class CountingSort1 {
+public class CountingSort2 {
 
 	public static void main(String[] args) {
 		try (Scanner in = new Scanner(System.in)) {
@@ -12,7 +12,8 @@ public class CountingSort1 {
 				int num = in.nextInt();
 				arr[num]+=1; 
 			}
-			for (int i :arr) {
+			for (int i=0;i<100;i++) {
+				for(int j=arr[i];j>0;j--)
 				System.out.print(i+" ");
 			}
 			System.out.println();

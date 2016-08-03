@@ -1,25 +1,20 @@
-package com.algo.problems;
+package com.algo.sort.problems;
 import java.util.Scanner;
 
-public class InsertionSort2 {
-
+public class InsertionSort {
 	public static void insertIntoSorted(int[] ar) {
-		int size = ar.length;
-		for(int i = 1; i < size; i++){ 
-
-		    //start from 1 because first element is sorted
-		    int insert = ar[i];
-
-		    for(int j = i; j > 0; j--){  
-		        //for loop to move backwards and perform insert 
-		        if(ar[j] < ar[j - 1]){
-		            ar[j] = ar[j -1];
-		            ar[j - 1] = insert;
-		        }
-		    }
-
-		    printArray(ar);
-		}
+		
+		for(int i=ar.length-1;i>=0;i--){
+	        int value=ar[i];
+	        int hole=i;
+	        while(hole>=1 && ar[hole-1]>value){
+	            ar[hole]=ar[hole-1];
+	            hole--;
+	            printArray(ar);
+	        }
+	        ar[hole]=value;
+	    }        
+	    printArray(ar);
 	}
 
 	/* Tail starts here */

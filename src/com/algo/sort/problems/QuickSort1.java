@@ -1,4 +1,4 @@
-package com.algo.problems;
+package com.algo.sort.problems;
 
 import java.util.ArrayList;
 import java.util.Scanner;
