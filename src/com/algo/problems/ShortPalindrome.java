@@ -1,5 +1,7 @@
 package com.algo.problems;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ShortPalindrome {
@@ -20,8 +22,9 @@ public class ShortPalindrome {
         int r = 4;
         int n = characters.length;
         // Print all combination using temprary array 'data[]'
-        combinationUtil(characters, data, 0, n-1, 0, r);
-		System.out.println(count % 1000000007);
+      //  combinationUtil(characters, data, 0, n-1, 0, r);
+        manacher(s.length(), s);
+		//System.out.println(count % 1000000007);
 	}
 
 	static boolean isPalindrome(char[] data) {
@@ -81,6 +84,47 @@ public class ShortPalindrome {
 			data[index] = arr[i];
 			combinationUtil(arr, data, i + 1, end, index + 1, r);
 		}
+	}
+	
+	static void manacher(int N,String s)
+	{
+		int i, j, k, rp; // iterators & length of 'palindrome radius'
+		int[][] R = new int[2][N + 1]; // table for storing results (2 rows for
+										// odd- and even-length palindromes
+
+		// print s first
+
+		// ...then search for palindromes
+
+		s = "@" + s + "#"; // insert 'guards' to iterate easily over s
+
+		for (j = 0; j <= 1; j++) {
+			R[j][0] = rp = 0;
+			i = 1;
+			while (i <= N) {
+				while (s.charAt(i - rp - 1) == s.charAt(i + j + rp))
+					rp++;
+				R[j][i] = rp;
+				k = 1;
+				while ((R[j][i - k] != rp - k) && (k < rp)) {
+					R[j][i + k] = Math.min(R[j][i - k], rp - k);
+					k++;
+				}
+				rp = Math.max(rp - k, 0);
+				i += k;
+			}
+		}
+		System.out.println(Arrays.deepToString(R));
+		s = s.substring(1, N); // remove 'guards'
+		 for(i = 1; i <= N; i++)
+		  {
+		    for(j = 0; j <= 1; j++)
+		      for(rp = R[j][i]; rp > 0; rp--)
+		      {
+		        for(k = 1; k < i - rp; k++) System.out.println(" ");
+		        System.out.println(s.substring(i - rp - 1,2 * rp + j));
+		      }
+		  }
 	}
 
 }
