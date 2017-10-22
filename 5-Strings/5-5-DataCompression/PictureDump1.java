@@ -13,7 +13,12 @@
  *  % java PictureDump 16 6 < abra.txt
  *
  *************************************************************************/
-import java.awt.Color;
+
+import edu.princeton.cs.introcs.BinaryStdIn;
+import edu.princeton.cs.introcs.Picture;
+import edu.princeton.cs.introcs.StdOut;
+
+import java.awt.*;
 
 public class PictureDump1 {
 

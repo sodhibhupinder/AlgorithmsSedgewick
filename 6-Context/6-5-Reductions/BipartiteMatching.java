@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.introcs.StdRandom;
+
 /*************************************************************************
  *  Compilation:  javac BipartiteMatching.java
  *  Execution:    java BipartiteMatching N E

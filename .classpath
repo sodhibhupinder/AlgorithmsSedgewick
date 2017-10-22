@@ -31,15 +31,15 @@
 	<classpathentry kind="src" path="5-Strings/5-3-SubstringSearch"/>
 	<classpathentry kind="src" path="5-Strings/5-4-RegularExpressions"/>
 	<classpathentry kind="src" path="5-Strings/5-5-DataCompression"/>
-	<classpathentry kind="lib" path="stdlib.jar"/>
 	<classpathentry kind="lib" path="algs4.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/j3dcore.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/j3dutils.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/vecmath.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="stdlib-package.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -8,7 +8,10 @@
  *
  *************************************************************************/
 
-import java.awt.Color;
+import edu.princeton.cs.introcs.StdDraw;
+import edu.princeton.cs.introcs.StdIn;
+
+import java.awt.*;
 
 public class CollisionSystem {
     private MinPQ<Event> pq;        // the priority queue

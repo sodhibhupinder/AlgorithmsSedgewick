@@ -1,3 +1,4 @@
+import edu.princeton.cs.introcs.StdOut;
 
 // My solution to Exercises 1.2.16 and 1.2.17
 public class MyRational

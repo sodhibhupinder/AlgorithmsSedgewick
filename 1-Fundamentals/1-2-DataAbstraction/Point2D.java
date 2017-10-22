@@ -5,8 +5,12 @@
  *
  *************************************************************************/
 
+import edu.princeton.cs.introcs.StdRandom;
+
 import java.util.Arrays;
 import java.util.Comparator;
+
+import static edu.princeton.cs.introcs.StdDraw.*;
 
 public class Point2D implements Comparable<Point2D> {
     public static final Comparator<Point2D> X_ORDER = new XOrder();
@@ -176,12 +180,12 @@ public class Point2D implements Comparable<Point2D> {
 
     // plot using StdDraw
     public void draw() {
-        StdDraw.point(x, y);
+        point(x, y);
     }
 
     // draw line from this point p to q using StdDraw
     public void drawTo(Point2D that) {
-        StdDraw.line(this.x, this.y, that.x, that.y);
+        line(this.x, this.y, that.x, that.y);
     }
 
 
@@ -190,10 +194,10 @@ public class Point2D implements Comparable<Point2D> {
         int y0 = Integer.parseInt(args[1]);
         int N = Integer.parseInt(args[2]);
 
-        StdDraw.setCanvasSize(800, 800);
-        StdDraw.setXscale(0, 100);
-        StdDraw.setYscale(0, 100);
-        StdDraw.setPenRadius(.005);
+        setCanvasSize(800, 800);
+        setXscale(0, 100);
+        setYscale(0, 100);
+        setPenRadius(.005);
         Point2D[] points = new Point2D[N];
         for (int i = 0; i < N; i++) {
             int x = StdRandom.uniform(100);
@@ -204,18 +208,18 @@ public class Point2D implements Comparable<Point2D> {
 
         // draw p = (x0, x1) in red
         Point2D p = new Point2D(x0, y0);
-        StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.setPenRadius(.02);
+        setPenColor(RED);
+        setPenRadius(.02);
         p.draw();
 
 
         // draw line segments from p to each point, one at a time, in polar order
-        StdDraw.setPenRadius();
-        StdDraw.setPenColor(StdDraw.BLUE);
+        setPenRadius();
+        setPenColor(BLUE);
         Arrays.sort(points, p.POLAR_ORDER);
         for (int i = 0; i < N; i++) {
             p.drawTo(points[i]);
-            StdDraw.show(100);
+            show(100);
         }
     }
 }

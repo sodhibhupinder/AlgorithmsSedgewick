@@ -20,7 +20,8 @@
  *  all bad bed bug dad ... yes yet zoo    [ one string per line ]
  *  
  *************************************************************************/
-
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
 public class Merge {
 
     // stably merge a[lo .. mid] with a[mid+1 .. hi] using aux[lo .. hi]
@@ -147,7 +148,7 @@ public class Merge {
 
     // Read strings from standard input, sort them, and print.
     public static void main(String[] args) {
-        String[] a = StdIn.readStrings();
+        String[] a = StdIn.readAllStrings();
         Merge.sort(a);
         show(a);
     }

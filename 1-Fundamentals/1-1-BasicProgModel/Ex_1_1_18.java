@@ -1,4 +1,4 @@
-
+import edu.princeton.cs.introcs.StdOut;
 public class Ex_1_1_18
 {
     public static int mystery1(int a, int b)

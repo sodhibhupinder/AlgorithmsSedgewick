@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac Shuffle.java
  *  Execution:    java Shuffle < list.txt

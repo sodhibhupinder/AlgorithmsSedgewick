@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdDraw;
+import edu.princeton.cs.introcs.StdRandom;
 
 public class Ex_1_1_31
 {

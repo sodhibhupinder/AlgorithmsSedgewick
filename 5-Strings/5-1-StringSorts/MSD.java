@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 /***********************************************************************************
  *  Compilation: javac MSD.java
  *  Execution:   java MSD < input.txt

@@ -22,6 +22,9 @@
  ****************************************************************************/
 
 
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 /**
  *  The <tt>UF</tt> class represents a union-find data data structure.
  *  It supports the <em>union</em> and <em>find</em>

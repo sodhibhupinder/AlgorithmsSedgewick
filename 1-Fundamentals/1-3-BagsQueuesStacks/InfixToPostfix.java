@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
 
 /*************************************************************************
  *  Exercise 1.3.10

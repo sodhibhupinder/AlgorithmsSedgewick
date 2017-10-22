@@ -38,8 +38,10 @@
  *
  *************************************************************************/
 
-import java.util.Arrays;
+import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.introcs.StdOut;
 
+import java.util.Arrays;
 public class ThreeSumFast {
 
     // print distinct triples (i, j, k) such that a[i] + a[j] + a[k] = 0

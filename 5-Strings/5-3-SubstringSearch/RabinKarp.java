@@ -30,6 +30,8 @@
  *
  ***************************************************************/
 
+import edu.princeton.cs.introcs.StdOut;
+
 import java.math.BigInteger;
 import java.util.Random;
 

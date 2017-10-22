@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac Stats.java
  *  Execution:    java Stats < input.txt

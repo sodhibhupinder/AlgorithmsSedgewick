@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac NFA.java
  *  Execution:    java NFA regexp text

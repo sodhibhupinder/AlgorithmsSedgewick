@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.BinaryStdIn;
+import edu.princeton.cs.introcs.BinaryStdOut;
+
 /*************************************************************************
  *  Compilation:  javac LZW.java
  *  Execution:    java LZW - < input.txt   (compress)

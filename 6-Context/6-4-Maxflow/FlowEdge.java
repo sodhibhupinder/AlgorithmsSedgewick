@@ -6,6 +6,8 @@
  *
  *************************************************************************/
 
+import edu.princeton.cs.introcs.StdOut;
+
 /**
  *  The <tt>FlowEdge</tt> class represents a capacitated edge with a flow
  *  in a digraph.

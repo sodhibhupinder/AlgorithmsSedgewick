@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.BinaryStdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac BinaryDump.java
  *  Execution:    java BinaryDump N < file

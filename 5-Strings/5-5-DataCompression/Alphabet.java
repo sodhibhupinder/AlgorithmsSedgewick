@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdOut;
+
 public class Alphabet {
     public static final Alphabet BINARY         = new Alphabet("01");
     public static final Alphabet OCTAL          = new Alphabet("01234567");

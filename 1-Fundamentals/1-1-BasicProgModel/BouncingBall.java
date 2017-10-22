@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdDraw;
+
 /*************************************************************************
  *  Compilation:  javac BouncingBall.java
  *  Execution:    java BouncingBall

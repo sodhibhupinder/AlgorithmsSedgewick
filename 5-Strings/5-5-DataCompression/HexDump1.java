@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.BinaryStdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac HexDump.java
  *  Execution:    java HexDump < file

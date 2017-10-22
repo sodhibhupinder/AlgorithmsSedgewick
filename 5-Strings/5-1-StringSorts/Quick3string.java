@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 /***********************************************************************************
  *  Compilation: javac Quick3string.java
  *  Execution:   java Quick3string < input.txt

@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.introcs.StdRandom;
+
 /*************************************************************************
  *  Compilation:  javac Counter.java
  *  Execution:    java Counter N T

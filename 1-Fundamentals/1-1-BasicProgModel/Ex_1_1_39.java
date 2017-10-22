@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.introcs.StdRandom;
 
 import java.util.Arrays;
 

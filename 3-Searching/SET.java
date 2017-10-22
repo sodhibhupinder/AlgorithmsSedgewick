@@ -19,6 +19,8 @@
  *
  *************************************************************************/
 
+import edu.princeton.cs.introcs.StdOut;
+
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;

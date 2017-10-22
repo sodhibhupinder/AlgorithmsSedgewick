@@ -1,3 +1,7 @@
+import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac LookupIndex.java
  *  Execution:    java LookupIndex movies.txt "/"

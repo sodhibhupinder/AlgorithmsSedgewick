@@ -6,7 +6,8 @@
  *  Weighted quick-union (without path compression).
  *
  ****************************************************************************/
-
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
 public class WeightedQuickUnionUF {
     private int[] id;    // id[i] = parent of i
     private int[] sz;    // sz[i] = number of objects in subtree rooted at i

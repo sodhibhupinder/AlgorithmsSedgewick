@@ -1,3 +1,8 @@
+import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.introcs.StdOut;
+
+
+
 /*************************************************************************
  *  Compilation:  javac Multiway.java
  *  Execution:    java Multiway input1.txt input2.txt input3.txt ...
@@ -22,7 +27,7 @@
 
 public class Multiway { 
 
-    public static void merge(In[] streams) { 
+    public static void merge(In[] streams) {
         int N = streams.length; 
         IndexMinPQ<String> pq = new IndexMinPQ<String>(N); 
         for (int i = 0; i < N; i++) 
@@ -31,7 +36,7 @@ public class Multiway {
 
         // Extract and print min and read next from its stream. 
         while (!pq.isEmpty()) {
-            StdOut.print(pq.minKey() + " "); 
+            StdOut.print(pq.minKey() + " ");
             int i = pq.delMin(); 
             if (!streams[i].isEmpty()) 
                 pq.insert(i, streams[i].readString()); 

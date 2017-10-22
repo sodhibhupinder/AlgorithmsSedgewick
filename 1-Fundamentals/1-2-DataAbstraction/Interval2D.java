@@ -1,3 +1,7 @@
+import edu.princeton.cs.introcs.StdDraw;
+import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.introcs.StdRandom;
+
 /*************************************************************************
  *  Compilation:  javac Interval2D.java
  *  Execution:    java Interval2D

@@ -13,6 +13,8 @@
  *
  *************************************************************************/
 
+import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.introcs.StdRandom;
 public class DoublingTest {
 
     public static double timeTrial(int N) {

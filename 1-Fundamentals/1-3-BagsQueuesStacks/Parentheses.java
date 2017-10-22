@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac Parentheses.java
  *  Execution:    java Parentheses

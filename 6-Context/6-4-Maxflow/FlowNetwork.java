@@ -1,3 +1,7 @@
+import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.introcs.StdRandom;
+
 /*************************************************************************
  *  Compilation:  javac FlowNetwork.java
  *  Execution:    java FlowNetwork V E

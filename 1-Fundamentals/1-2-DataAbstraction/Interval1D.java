@@ -6,6 +6,8 @@
  *
  *************************************************************************/
 
+import edu.princeton.cs.introcs.StdOut;
+
 import java.util.Arrays;
 import java.util.Comparator;
 

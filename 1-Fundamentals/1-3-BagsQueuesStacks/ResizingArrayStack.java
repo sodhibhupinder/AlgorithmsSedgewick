@@ -13,9 +13,11 @@
  *
  *************************************************************************/
 
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 // suppress unchecked warnings in Java 1.5.0_6 and later
 @SuppressWarnings("unchecked")
 

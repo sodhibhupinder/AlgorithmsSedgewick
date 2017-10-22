@@ -1,10 +1,6 @@
 package com.algo.problems;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 
 public class DjikstraMySolution {

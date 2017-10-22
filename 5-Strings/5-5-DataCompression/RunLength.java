@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.BinaryStdIn;
+import edu.princeton.cs.introcs.BinaryStdOut;
+
 /*************************************************************************
  *  Compilation:  javac RunLength.java
  *  Execution:    java RunLength - < input.txt   (compress)

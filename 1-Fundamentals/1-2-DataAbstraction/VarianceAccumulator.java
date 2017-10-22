@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.introcs.StdRandom;
 
 // Exercise 1.2.18
 public class VarianceAccumulator

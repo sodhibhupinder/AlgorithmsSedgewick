@@ -1,10 +1,6 @@
 package com.algo.problems;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.PriorityQueue;
-import java.util.Scanner;
+import java.util.*;
 
 class Node implements Comparable<Node> {
 	int val, cost;

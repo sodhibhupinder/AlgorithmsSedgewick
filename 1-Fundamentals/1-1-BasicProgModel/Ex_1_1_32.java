@@ -1,3 +1,7 @@
+import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.introcs.StdDraw;
+import edu.princeton.cs.introcs.StdStats;
+
 /*************************************************
  * 
  * % java Ex_1_1_32 500 0 1000000 < largeT.txt

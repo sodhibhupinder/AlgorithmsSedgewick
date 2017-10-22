@@ -8,5 +8,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="/AlgorithmsSedgewick"/>
 	<classpathentry kind="src" path="/StdLib"/>
+	<classpathentry kind="lib" path="/AlgorithmsSedgewick/stdlib-package.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

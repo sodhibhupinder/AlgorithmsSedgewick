@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac AssignmentProblem.java
  *  Execution:    java AssignmentProblem N

@@ -6,9 +6,10 @@
  *
  *************************************************************************/
 
+import edu.princeton.cs.introcs.StdOut;
+
 import java.util.Arrays;
 import java.util.Comparator;
-
 
 public class Transaction implements Comparable<Transaction> {
     private final String  who;      // customer

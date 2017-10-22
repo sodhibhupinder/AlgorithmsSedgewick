@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.introcs.Out;
+
 /*************************************************************************
  *  Compilation:  javac Cat.java
  *  Execution:    java Cat input0.txt input1.txt ... output.txt

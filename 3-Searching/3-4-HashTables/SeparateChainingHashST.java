@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac SeparateChainingHashST.java
  *  Execution:    java SeparateChainingHashST
@@ -7,6 +10,7 @@
  *  % java SeparateChainingHashST
  *
  *************************************************************************/
+
 
 public class SeparateChainingHashST<Key, Value> {
     private static final int INIT_CAPACITY = 4;
@@ -122,7 +126,7 @@ public class SeparateChainingHashST<Key, Value> {
 
         // print keys
         for (String s : st.keys()) 
-            StdOut.println(s + " " + st.get(s)); 
+            StdOut.println(s + " " + st.get(s));
 
     }
 

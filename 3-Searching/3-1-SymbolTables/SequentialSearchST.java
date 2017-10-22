@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac SequentialSearchST.java
  *  Execution:    java SequentialSearchST
@@ -24,6 +27,7 @@
  *
  *************************************************************************/
 
+@SuppressWarnings("WrongPackageStatement")
 public class SequentialSearchST<Key, Value> {
     private int N;           // number of key-value pairs
     private Node first;      // the linked list of key-value pairs

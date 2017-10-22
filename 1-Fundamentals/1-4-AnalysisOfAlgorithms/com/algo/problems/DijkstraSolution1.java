@@ -1,10 +1,6 @@
 package com.algo.problems;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Scanner;
+import java.util.*;
 
 public class DijkstraSolution1 {
 	static class Pair {

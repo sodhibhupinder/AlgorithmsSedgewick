@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.introcs.StdRandom;
+
 /*************************************************************************
  *  Compilation:  javac RandomSeq.java
  *  Execution:    java RandomSeq N lo hi

@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac FordFulkerson.java
  *  Execution:    java FordFulkerson V E

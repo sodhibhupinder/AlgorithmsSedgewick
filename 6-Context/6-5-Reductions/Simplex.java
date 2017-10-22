@@ -1,3 +1,6 @@
+import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.introcs.StdRandom;
+
 /*************************************************************************
  *  Compilation:  javac Simplex.java
  *  Execution:    java Simplex
