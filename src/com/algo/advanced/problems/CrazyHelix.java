@@ -1,4 +1,4 @@
-package com.algo.advances.problems;
+package com.algo.advanced.problems;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -31,6 +31,17 @@ public class CrazyHelix {
             a.reversed ^= true;
         }
     }
+	
+	static void pushDown(Treap a) {
+        if (a.reversed) {
+        	Treap tmp = a.left;
+            a.left = a.right;
+            a.right = tmp;
+            reverse(a.left);
+            reverse(a.right);
+            a.reversed = false;
+        }
+    }
 	/**
      * Reverses value at point [l, r)
      *
@@ -38,13 +49,15 @@ public class CrazyHelix {
      * @param r
      */
 	static Treap reverse(Treap treap,int l, int r) {
-    	Treap[] right = split(treap, r);
-    	Treap[] left = split(right[0], l);
+    	Treap[] right = split(treap, l);
+    	Treap[] left = split(right[0], r-l);
         reverse(left[1]);
         return merge(left[0], merge(left[1], right[1]));
     }
 	static void update(Treap treap) {
+		 pushDown(treap);
 		treap.count = count(treap.left) + count(treap.right) + 1;
+		
 	}
 
 	static Treap[] split(Treap treap, int key) {
@@ -52,7 +65,7 @@ public class CrazyHelix {
 			Treap[] empty = { null, null };
 			return empty;
 		}
-
+		update(treap);
 		if (count(treap.left) > key) {
 			Treap[] result = split(treap.left, key);
 			treap.left = result[1];
@@ -167,7 +180,7 @@ public class CrazyHelix {
 				if (opCode == 1) {
 					int fromIndex = scanner.nextInt();
 					int toIndex = scanner.nextInt();
-					treap = reverse(treap,fromIndex,toIndex);
+					treap = reverse(treap,get(treap,fromIndex-1),get(treap,toIndex));
 					System.out.println(traverse(treap).substring(1));
 				} else if(opCode == 2){
 					int element = scanner.nextInt();
