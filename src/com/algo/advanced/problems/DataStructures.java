@@ -5,9 +5,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.algo.advanced.problems.CrazyHelix2.Treap;
-
-
 public class DataStructures {
 
 
@@ -463,6 +460,16 @@ public class DataStructures {
             bc.l.addingVal += val;
             merge(ab.l, merge(bc.l, bc.r));
         }
+		public LazyRMQTreap search(LazyRMQTreap root,int key) {
+			    // Base Cases: root is null or key is present at root
+			    if (root == null || root.val == key)
+			       return root;
+			    // Key is greater than root's key
+			    if (root.val < key)
+			       return search(root.r, key);
+			    // Key is smaller than root's key
+			    return search(root.l, key);
+		}
     }
 
     /**

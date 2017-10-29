@@ -1,305 +1,248 @@
 package com.algo.advanced.problems;
 
-import java.util.Random;
 import java.util.Scanner;
-
-import com.algo.advanced.problems.CrazyHelix.Treap;
 
 
 public class CrazyHelix2 {
 
-	private static final int INF = 100000001;
-	static Random rand = new Random();
+
+	static boolean found;
 
 
-	static class Treap {
-		Treap l, r;
-		int value;
-		int count;
-		int heapValue;
-		boolean reversed;
 
-		public Treap(int v) {
-			value = v;
-			heapValue = rand.nextInt();
-			count = 1;
+
+	static class LazyRMQTreap {
+
+		static class NodePair {
+			LazyRMQTreap l, r;
+		}
+		LazyRMQTreap l, r;
+		int size = 1;
+		int val;
+		boolean rev;
+		double p;
+		int min;
+		int sum;
+		int addingVal;
+		
+		public LazyRMQTreap(int val) {
+			this.val = val;
+			p = Math.random();
+			update();
 		}
 
-		public void print(String prefix) {
-			if (l != null) {
-				l.print(prefix + " ");
+		private LazyRMQTreap update() {
+			assert addingVal == 0;
+			size = nodeSize(l) + nodeSize(r) + 1;
+			min = Math.min(l == null ? Integer.MAX_VALUE : l.min + l.addingVal,
+					r == null ? Integer.MAX_VALUE : r.min + r.addingVal);
+			min = Math.min(min, val);
+			sum = val + (l == null ? 0 : l.sum + l.addingVal * l.size) + (r == null ? 0 : r.sum + r.addingVal * r.size);
+			return this;
+		}
+
+		private static int nodeSize(LazyRMQTreap node) {
+			return node != null ? node.size : 0;
+		}
+
+		private void processLazy() {
+			if (rev) {
+				LazyRMQTreap temp = l;
+				l = r;
+				r = temp;
+				if (l != null)
+					l.rev ^= true;
+				if (r != null)
+					r.rev ^= true;
+				rev = false;
 			}
-			System.out.println(prefix + "v=" + value + "/r=" + reversed);
-			if (r != null) {
-				r.print(prefix + " ");
+			if (addingVal > 0) {
+				if (l != null)
+					l.addingVal += addingVal;
+				if (r != null)
+					r.addingVal += addingVal;
+				val += addingVal;
+				addingVal = 0;
+				update();
 			}
 		}
-
-	}
-
-	static Treap root;
-
-	public static Treap update(Treap a) {
-		if (a == null) {
-			return null;
+		int[] findElement(int element) {
+			int[] array = new int[size];
+			int[] arrayIndexes = new int[size];
+			findElement(array,arrayIndexes, 0,element);
+			return arrayIndexes;
 		}
-		pushDown(a);
-		a.count = 1 + count(a.l) + count(a.r);
-		return a;
-	}
-
-	public static void pushDown(Treap a) {
-		if (a.reversed) {
-			Treap tmp = a.l;
-			a.l = a.r;
-			a.r = tmp;
-			reverse(a.l);
-			reverse(a.r);
-			a.reversed = false;
-		}
-	}
-
-	public static int count(Treap a) {
-		return (a == null) ? 0 : a.count;
-	}
-
-	public static void reverse(Treap a) {
-		if (a != null) {
-			a.reversed ^= true;
-		}
-	}
-
-	/**
-	 * Grabs k-th Treap from given Treap.
-	 *
-	 * @param a
-	 * @param k
-	 * @return
-	 */
-	public static Treap grab(Treap a, int k) {
-		if (a == null) {
-			return null;
-		}
-		update(a);
-		int l = count(a.l);
-		if (k == l) {
-			return a;
-		} else if (k < l) {
-			return grab(a.l, k);
-		} else {
-			return grab(a.r, k - l - 1);
-		}
-	}
-
-	/**
-	 * Merges two trees.
-	 *
-	 * @param a
-	 * @param b
-	 * @return merged root Treap
-	 */
-	public static Treap merge(Treap a, Treap b) {
-		if (a == null || b == null) {
-			return a == null ? b : a;
-		}
-		update(a);
-		update(b);
-		if (a.heapValue < b.heapValue) {
-			a.r = merge(a.r, b);
-			return update(a);
-		} else {
-			b.l = merge(a, b.l);
-			return update(b);
-		}
-	}
-
-	/**
-	 * Splits tree at point k. [0, k), [k, n)
-	 *
-	 * @param a
-	 * @param k
-	 * @return
-	 */
-	public static Treap[] split(Treap a, int k) {
-		if (a == null) {
-			return new Treap[] { null, null };
-		}
-		update(a);
-		if (k <= count(a.l)) {
-			Treap[] s = split(a.l, k);
-			a.l = s[1];
-			return new Treap[] { s[0], update(a) };
-		} else {
-			Treap[] s = split(a.r, k - count(a.l) - 1);
-			a.r = s[0];
-			return new Treap[] { update(a), s[1] };
-		}
-	}
-
-	/**
-	 * Inserts Treap v at point k.
-	 *
-	 * @param a
-	 * @param k
-	 * @return new tree
-	 */
-	public static Treap insert(Treap a, int k, Treap v) {
-		Treap[] x = split(a, k);
-		return merge(x[0], merge(v, x[1]));
-	}
-	
-	public static int detect(Treap x, int v) {
-		// Base Cases: root is null or key is present at root
-	    if (x == null || x.value == v)
-	       return 0;
-	     
-	    // Key is greater than root's key
-	    if (x.value< v)
-	       return detect(x.r, v);
-	  
-	    // Key is smaller than root's key
-	    return detect(x.l, v);
-    }
-	
-	/** Function for inorder traversal **/
-    public static void inorder()
-    {
-        inorder(root);
-        System.out.println("");
-    }
-    private static void inorder(Treap r)
-    {
-        if (r != null)
-        {
-            inorder(r.l);
-            System.out.print(r.value +" ");
-            inorder(r.r);
-        }
-    }
-		/**
-	 * Erases Treap at point k.
-	 *
-	 * @param a
-	 * @param k
-	 * @return new tree
-	 */
-	public static Treap erase(Treap a, int k) {
-		Treap[] al = split(a, k);
-		Treap[] ar = split(al[1], 1);
-		return merge(al[0], ar[1]);
-	}
-
-	/**
-	 * Reverses value at point [l, r)
-	 *
-	 * @param l
-	 * @param r
-	 */
-	public static void reverse(int l, int r) {
-		Treap[] right = split(root, r);
-		Treap[] left = split(right[0], l);
-		reverse(left[1]);
-		root = merge(left[0], merge(left[1], right[1]));
-	}
-
-	/**
-	 * Returns size of the tree.
-	 *
-	 * @return size of the tree
-	 */
-	public int size() {
-		return count(root);
-	}
-
-	/**
-	 * Adds new Treap value=v to the end of tree.
-	 *
-	 * @param v
-	 */
-	public static void push(int v) {
-		root = insert(root, INF, new Treap(v));
-	}
-
-	/**
-	 * Adds new Treap value=v to tree at k-th position.
-	 *
-	 * @param v
-	 */
-	public static void push(int v, int k) {
-		root = insert(root, k, new Treap(v));
-	}
-
-	/**
-	 * Removes k-th Treap from tree.
-	 *
-	 * @param k
-	 */
-	public static void remove(int k) {
-		root = erase(root, k);
-	}
-
-	/**
-	 * Get k-th Treap value
-	 *
-	 * @param k
-	 * @return
-	 */
-	public static int get(int k) {
-		Treap n = grab(root, k);
-		if (n == null) {
-			return -INF;
-		}
-		return n.value;
-	}
-	static void traverseInternal(StringBuffer buffer, Treap treap) {
-		if (treap == null) {
+ 
+		private void findElement(int[] array,int[] arrayIndexes, int off,int element) {
+			if(!found) {
+			processLazy();
+			if (l != null && !found) {
+				l.findElement(array,arrayIndexes, off,element);
+				off += l.size;
+			}
+			if(element==val && !found)
+			{
+			array[off++] = val;
+			arrayIndexes[val-1]= off;
+			found=true;
 			return;
+			}
+			else {
+				off++;
+			}
+			if (r != null && !found) {
+				r.findElement(array,arrayIndexes, off,element);
+			}
+			}
+		}
+		
+		static LazyRMQTreap merge(LazyRMQTreap l, LazyRMQTreap r) {
+			if (l == null || r == null)
+				return l != null ? l : r;
+			if (l.p > r.p) {
+				l.processLazy();
+				l.r = merge(l.r, r);
+				return l.update();
+			} else {
+				r.processLazy();
+				r.l = merge(l, r.l);
+				return r.update();
+			}
 		}
 
-		traverseInternal(buffer, treap.l);
-		buffer.append(" " + treap.value);
-		traverseInternal(buffer, treap.r);
-	}
+		static NodePair split(LazyRMQTreap node, int k) {
+			NodePair ret = new NodePair();
+			if (node == null)
+				return ret;
+			node.processLazy();
 
-	static String traverse(Treap treap) {
-		StringBuffer buffer = new StringBuffer();
-		traverseInternal(buffer, treap);
-		return buffer.toString();
+			if (k <= nodeSize(node.l)) {
+				ret = split(node.l, k);
+				node.l = ret.r;
+				ret.r = node.update();
+			} else {
+				ret = split(node.r, k - nodeSize(node.l) - 1);
+				node.r = ret.l;
+				ret.l = node.update();
+			}
+			return ret;
+		}
+
+		int get(int i) {
+			processLazy();
+			if (i < nodeSize(l))
+				return l.get(i);
+			if (i == nodeSize(l))
+				return val;
+			return r.get(i - nodeSize(l) - 1);
+		}
+		LazyRMQTreap insert(int i, int val) {
+			NodePair p = split(this, i);
+			return merge(p.l, merge(new LazyRMQTreap(val), p.r));
+		}
+
+		LazyRMQTreap delete(int i) {
+			NodePair p = split(this, i);
+			return merge(p.l, split(p.r, 1).r);
+		}
+
+		LazyRMQTreap reverseRange(int l, int r) {
+			NodePair ab = split(this, l);
+			NodePair bc = split(ab.r, r - l);
+			bc.l.rev ^= true;
+			return merge(ab.l, merge(bc.l, bc.r));
+		}
+
+		LazyRMQTreap rotateLeft(int i) {
+			NodePair p = split(this, i);
+			return merge(p.r, p.l);
+		}
+
+		LazyRMQTreap rotateLeftRange(int l, int r, int i) {
+			NodePair ab = split(this, l);
+			NodePair bc = split(ab.r, r - l);
+			bc.l = bc.l.rotateLeft(i);
+			return merge(ab.l, merge(bc.l, bc.r));
+		}
+
+		int minRange(int l, int r) {
+			NodePair ab = split(this, l);
+			NodePair bc = split(ab.r, r - l);
+			int ret = bc.l.min;
+			merge(ab.l, merge(bc.l, bc.r)); 
+			return ret;
+		}
+
+		int sumRange(int l, int r) {
+			NodePair ab = split(this, l);
+			NodePair bc = split(ab.r, r - l);
+			int ret = bc.l.sum;
+			merge(ab.l, merge(bc.l, bc.r));
+			return ret;
+		}
+
+		void addRange(int l, int r, int val) {
+			NodePair ab = split(this, l);
+			NodePair bc = split(ab.r, r - l);
+			bc.l.addingVal += val;
+			merge(ab.l, merge(bc.l, bc.r));
+		}
+		 @Override
+		    public String toString() {
+		        StringBuilder sb = new StringBuilder();
+		        this.toString(this, sb);
+		        return sb.toString().trim();
+		    }
+
+		    void toString(LazyRMQTreap t, StringBuilder sb) {
+		        if (t == null)
+		            sb.append(' ');
+		        else {
+		            this.toString(t.l, sb);
+		            sb.append(t.val);
+		            this.toString(t.r, sb);
+		        }
+		    }
+
 	}
-	public static void main(String... args) {
+	
+	
+
+	
+	public static void main(String[] args) {
 		try (final Scanner scanner = new Scanner(System.in)) {
 			int itemCount = scanner.nextInt();
 			int commandCount = scanner.nextInt();
-			// Treap treap = null;
-			int a[] = new int[itemCount];
-			for (int i = 0; i < itemCount; i++) {
+			int[] a = new int[itemCount];
+			a[0] = 1;
+			LazyRMQTreap root = new LazyRMQTreap(1);
+			for (int i = 1; i < itemCount; i++) {
 				a[i] = i + 1;
+				root = LazyRMQTreap.merge(root, new LazyRMQTreap(i + 1));
 			}
-			for (int i = 0; i < a.length; i++) {
-				push(a[i]);
-			}
-
+			int[] arrayOfIndexes = new int[itemCount];
+			 StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < commandCount; i++) {
 				int opCode = scanner.nextInt();
-
 				if (opCode == 1) {
 					int fromIndex = scanner.nextInt();
 					int toIndex = scanner.nextInt();
-					reverse(fromIndex - 1, toIndex);
-					System.out.println(traverse(root));
-					inorder();
+					root.reverseRange(fromIndex - 1, toIndex);
 				} else if (opCode == 2) {
 					int element = scanner.nextInt();
-					System.out.println("element " + element + " is at position " + (detect(root,element)+1));
+					arrayOfIndexes = root.findElement(element);
+					//System.out.println("element " + element + " is at position " + (arrayOfIndexes[element - 1]));
+					sb.append("element " + element + " is at position " + (arrayOfIndexes[element - 1])+"\n");
+					found=false;
 				} else if (opCode == 3) {
 					int position = scanner.nextInt();
-					System.out.println("element at position " + position + " is " + get(position - 1));
+					//System.out.println("element at position " + position + " is " + root.get(position - 1));
+					sb.append("element at position " + position + " is " + root.get(position - 1)+"\n");
 				}
 
 			}
-
-			// System.out.println(Math.abs(getLeft(treap) - getRight(treap)));
-			// System.out.println(traverse(treap).substring(1));
+            scanner.close();
+			System.out.println(sb.toString());
 		}
 	}
 }

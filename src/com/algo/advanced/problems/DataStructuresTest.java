@@ -261,11 +261,37 @@ public class DataStructuresTest {
         assertEquals(3, root.get(2));
         assertEquals(4, root.get(3));
         assertEquals(5, root.get(4));
-        root = root.reverseRange(0, 3);
+        root = root.reverseRange(0,3);
+        root = root.reverseRange(2,5);
         System.out.println(LazyRMQTreap.traverse(root));
         assertEquals(3, root.get(0));
         assertEquals(2, root.get(1));
-        assertEquals(1, root.get(2));
+        assertEquals(5, root.get(2));
+        assertEquals(4, root.get(3));
+        assertEquals(1, root.get(4));
+        root = root.reverseRange(1,4);
+        System.out.println(LazyRMQTreap.traverse(root));
+        assertEquals(3, root.get(0));
+        assertEquals(4, root.get(1));
+        assertEquals(5, root.get(2));
+        assertEquals(2, root.get(3));
+        assertEquals(1, root.get(4));
+     }
+    
+    @Test
+    public void testLazyRMQTreapSearch() {
+        LazyRMQTreap root = new LazyRMQTreap(1);
+        for (int i = 2; i <= 5; i++) {
+            root = LazyRMQTreap.merge(root, new LazyRMQTreap(i));
+        }
+        LazyRMQTreap rootThree = root.search(root,3);
+        assertEquals(3, rootThree.val);
+        LazyRMQTreap rootFour = root.search(root,4);
+        assertEquals(4, rootFour.val);
+        LazyRMQTreap rootFive = root.search(root,5);
+        assertEquals(5, rootFive.val);
+        LazyRMQTreap rootOne = root.search(root,1);
+        assertEquals(1, rootOne.val);
      }
     
 
