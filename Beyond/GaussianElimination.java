@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac GaussianElimination.java
  *  Execution:    java GaussianElimination

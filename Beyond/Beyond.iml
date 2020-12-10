@@ -9,5 +9,17 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="1-Fundamentals" />
     <orderEntry type="module" module-name="2-Sorting" />
+    <orderEntry type="library" name="algs4" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../stdlib-package.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../stdlib-package.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

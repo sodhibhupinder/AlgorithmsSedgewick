@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdOut;
+
 /*************************************************************************
  *  Compilation:  javac FFT.java
  *  Execution:    java FFT N

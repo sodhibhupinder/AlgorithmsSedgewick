@@ -11,6 +11,9 @@
  *
  *************************************************************************/
 
+import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.introcs.StdRandom;
+
 public class Bipartite {
     private boolean isBipartite;   // is the graph bipartite?
     private boolean[] color;       // color[v] gives vertices on one side of bipartition
